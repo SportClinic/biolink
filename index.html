@@ -3,42 +3,58 @@
 <html>
 <head>
     <title> Intro bio link </title>
- 
+    <div class="parent">
+        
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" >
 
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
-        body {
-        margin-top: 48px;
-            text-align: center;
-        
-   /* background-image:url("medical.png");*/
    
-    background-size:contain;
+
+        
+        body {
+            background-image: url('img/sc.png') ;
+            background-size: cover;
+background-repeat:no-repeat ;
+background-blend-mode:overlay;
+border: 15cm;
+margin-top:7cm;
+background-size:contain;
+background-position: center;
+margin-left: 8cm;
+margin-right: 8cm;
+        margin-top: 15px;
+            text-align: center;
     background-position: center;
     background-repeat: no-repeat;
             background-color:#EEEEEE;
              font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
             
+        
         }
+        
+        
+         /*   background-image: image("C:\Users\USER\OneDrive\Desktop\bio link\img\bad9dbd0-c638-4a72-8ff1-df361fb770d0.jpg");
+        }*/
         .profile-pic{
             border-radius: 100%;
-            width: 120px;
-            height: 120px;
+            width: 280px;
+            height: 230px;
         }
                .link-tree {
                list-style: none; 
                padding: 0;         
         }
         .link-tree > li{
-            margin: 30px 0 30px 0;
+            margin: 25px 0 25px 0;
         }
         .link-tree  a {
 text-decoration: none;
 padding: 12px;
 color: white;
-background-color:#A7C2C8 ;
+/*background-color:#A7C2C8 ;*/
+background-color: #20409a;
 border-radius: 6px;
  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
  border: 1px #000 solid;
@@ -51,7 +67,9 @@ border-radius: 6px;
         .link-tree a:hover,
         .link-tree a:focus
          {
-            background-color:#0d4790;
+            /*background-color:#0d4790;
+            color: white;*/
+            background-color: #39b54a;
             color: white;
         }
         .bio {
@@ -89,20 +107,57 @@ color: blue;
   
   color: rgb(63, 225, 41);
 }
+/* styles.css */
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+figure {
+
+    margin: 10px;
+    text-align: center;
+}
+
+img {
+
+    max-width: 100%;
+}
+
+
+
     </style>
 </head>
-<body>   
-    <img class="profile-pic"  src="img\sportclinic.png" width="150" height="150" class="center" alt="No picture"/>
-<div class="bio">    
+<body> 
+   <header>
+    <img class="profile-pic"  src="img\Logo white Transparent-08.png" width="50px" height="50px" class="center" alt="No picture" />
+   
+<div class="bio" border-radius >    
 <h1> Sport Clinic العيادة الرياضية </h1>
 <p >Move Well... Move More
 <br>تحرك جيداً ... تحرك أكثر </p>
 </div>
-    
-    
+</header>
+   <!-- <section class="gallery">
+        <figure >
+        <img src="img/rehab.jpg" alt="pic1" >
+        <figcaption>التدريب الشخصي  </figcaption>
+        </figure>
+        <figure >
+            <img src="img/rehab.jpg" alt="pic2" >
+            <figcaption>التاهيل </figcaption>
+            </figure>
+            <figure >
+                <img src="img/rehab.jpg" alt="pic1" >
+                <figcaption>قسم السيدات  
+                    <b>dljhv dhgkspfogk vspobrt,po,tpi.jbrtobgy,[pt.hj.rtbboh.tpihtdiohjp,ytdihj,ytpioh,jtdpoihjytpihj</b>
+                </figcaption>
+                </figure>
+    </section>-->
     <ul class="link-tree">
         <li>
-        <a href="file:///C:/Users/USER/OneDrive/Desktop/intro/details.html" target="_blank" >مــــن نـــحـــــن</a>
+        <a href="details.html" target="_blank" >ما هي العيادة الرياضية </a>
     </li>
     <li>
         <a href="#" target="_blank">تأهيل الإصابات </a>
@@ -110,7 +165,7 @@ color: blue;
     <li>
         <a href="#" target="_blank">الـتـدريـب الـشـخـصـي </a>
     </li> <li>
-        <a href="#" target="_blank">قـسـم الـســيدات  </a>
+        <a href="women.html" target="_blank">قـسـم الـســيدات  </a>
     </li>
 </ul>
 
@@ -121,4 +176,4 @@ color: blue;
 
 </div>
 </body>
-</html>
+</html> 
