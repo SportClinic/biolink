@@ -207,6 +207,16 @@
 <footer>
     <p>&copy; 2024 Sport Clinic  جميع الحقوق محفوظة.</p>
 </footer>
+<script>
+  // نضيف حالة في سجل التاريخ بمجرد تحميل الصفحة
+  history.pushState(null, null, location.href);
+
+  // نراقب حدث الرجوع في المتصفح
+  window.addEventListener('popstate', function (event) {
+    // لما يضغط المستخدم زر الرجوع، نوجهه للصفحة الرئيسية
+    window.location.href = 'index.html';
+  });
+</script> 
 
 </body>
 </html>
