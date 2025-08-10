@@ -2,29 +2,24 @@
 <html>
 <head>
     <title> REHAB</title>
-    <div class="parent">
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" >
 
-
  <style>
      h2 {
             color: #4CAF50;
-            
-        }
-
+             
+        text-align: right;
+    }
         
-        p {
-            margin-bottom: 1rem;
-        }
-        footer {
-            text-align: right;
-            padding: 1rem 0;
-            background: #333;
-            color: white;
-            margin-top: 2rem;
-        }
+    p {
+        margin-bottom: 1rem;
+    }
+    footer {
+      text-align: center;
+    }
+    
     body {
       text-align: end;
         font-family: Arial, sans-serif;
@@ -33,6 +28,7 @@
         padding: 0;
         background-color: #f9f9f9;
         color: #333;
+        direction: rtl;
     }
     header {
         background: #4CAF50;
@@ -44,57 +40,94 @@
         max-width: 800px;
         margin: 2rem auto;
         padding: 1rem;
-       
         /*background: white;*/
         border-radius: 8px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
     * {
-  box-sizing: border-box;
-}
-@media screen and (max-width: 650px) {
+      box-sizing: border-box;
+    }
+    @media screen and (max-width: 650px) {
+      .column {
+        width: 100%;
+        display: block;
+      }
+    }
+
+    .column {
+      float: right;
+      width: 25%;
+      padding: 5px;
+      /*position: relative;*/ /* أزلت لأنه خاص بالـ overlay */
+    }
+
+    /* أزلت كامل قواعد .overlay لأنها غير مستخدمة الآن */
+
+    .image {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    ul {
+      list-style-type: disc; /* نقاط */
+      list-style-position: outside; /* النقطة تبقى خارج النص */
+      padding-left: 1.5em;  /* حتى تظهر النقطة على اليسار */
+    }
+
+    li {
+      text-align: right; /* النص يبدأ من اليمين */
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+
+    /* نص الاسم تحت الصورة */
   .column {
-    width: 100%;
-    display: block;
-  }
+  float: right;
+  width: 25%;
+  padding: 5px;
+  text-align: center;  /* مركز النص (المستطيل) تحت الصورة */
 }
 
 .column {
   float: right;
   width: 25%;
   padding: 5px;
+  text-align: center; /* لتمركز النص تحت الصورة */
 }
 
-/* Clearfix (clear floats) */
-.row::after {
-  content: "";
-  clear: both;
-  display: table;
+.column img {
+  width: 80%;
+  display: block;
+  margin: 0 auto;
 }
-.overlay {
-  position: absolute; 
-  bottom: 0; 
-  background: rgb(0, 0, 0);
-  background: rgba(0, 0, 0, 0.5); /* Black see-through */
-  color: #f1f1f1; 
-  width: 25%;
-  transition: .5s ease;
-  opacity:0;
+
+.caption {
+  display: block;
+  width: 80%;               /* نفس عرض الصورة */
+  margin: 8px auto 0 auto;  /* مسافة من فوق، متركزة أفقياً */
+  background-color: #007bff; /* أزرق */
   color: white;
-  font-size: 20px;
-  padding: 20px;
+  padding: 8px 0;
+  border-radius: 6px;
+  cursor: pointer;
+  user-select: none;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
   text-align: center;
 }
-.column:hover .overlay {
-  opacity: 1;
+
+.caption:hover {
+  background-color: #28a745; /* أخضر عند تحريك الماوس */
 }
-    
-.image {
-  display: block;
-  width: 100%;
-  height: auto;
+
+.caption:active {
+  background-color: #1e7e34; /* أخضر غامق عند الضغط */
 }
-    </style>
+
+
+</style>
 </head>
 
 <body>
@@ -104,45 +137,40 @@
 
     <div class="container1">
         <h2></h2> 
-        <p>
-         
-          
-        </p>
+        <p></p>
 
         <h2>قسم مختص بتأهيل الإصابات الرياضية وغير الرياضية وذلك بالمتابعة والتواصل مع المعالج  الطبيعي والطبيب ومن الحالات التي يتم تأهيلها  </h2>
         <p></p>
 
-
-        
-       
 <div class="row">
     <div class="column">
       <img src="img/202003101913534.png" alt="ka7el" style="width:80%" >
-    <div class="overlay">اصابات الكاحل </div>
-</div>
+      <p class="caption">اصابات الكاحل</p>
+    </div>
     <div class="column">
       <img src="img/202003111050481.png" alt="rokbeh" style="width:80%">
-      <div class="overlay">اصابات الركبة </div>
+      <p class="caption">اصابات الركبة</p>
     </div>
     <div class="column">
       <img src="img/202003111051043.png" alt="hip" style="width:80%">
-      <div class="overlay">اصابات الحوض </div>
-  </div>
-  <div class="column">
-    <img src="img/202003111051242.png" alt="shoulder" style="width:80%">
-    <div class="overlay">اصابات الكتف </div>
-  </div>
-  <div class="column">
-    <img src="img/20210316073753202003111051242 (1).png" alt="ko3" style="width:80%">
-    <div class="overlay">اصابات مفاصل اليد  </div>
-  </div>
+      <p class="caption">اصابات الحوض</p>
+    </div>
     <div class="column">
-        <img src="img/cropped-image.png" alt="thahr" style="width:80%">
-        <div class="overlay">اصابات العمود الفقري   </div>
-  </div>
-  <div class="column">
-    <img src="img/123.png" alt="neck" style="width:80%">
-    <div class="overlay">اصابات الرقبة    </div>
+      <img src="img/202003111051242.png" alt="shoulder" style="width:80%">
+      <p class="caption">اصابات الكتف</p>
+    </div>
+    <div class="column">
+      <img src="img/20210316073753202003111051242 (1).png" alt="ko3" style="width:80%">
+      <p class="caption">اصابات مفاصل اليد</p>
+    </div>
+    <div class="column">
+      <img src="img/cropped-image.png" alt="thahr" style="width:80%">
+      <p class="caption">اصابات العمود الفقري</p>
+    </div>
+    <div class="column">
+      <img src="img/123.png" alt="neck" style="width:80%">
+      <p class="caption">اصابات الرقبة</p>
+    </div>
 </div>
 
 <br><br>
@@ -152,107 +180,33 @@
 <br><br>
 <br><br>
 <br><br>
-<br><br>
-        <!---    <h2></h2>
-            <p></p>
-            <div class="slideshow-container">
 
-                <div class="mySlides fade">
-                  <div class="numbertext">1 / 8</div>
-                  <img src="img/DSC04523.png" style="width:100%">
-                  <div class="text"></div>
-                </div>
-                
-                <div class="mySlides fade">
-                  <div class="numbertext">2 / 8</div>
-                  <img src="img/DSC04524.png" style="width:100%">
-                  <div class="text"></div>
-                </div>
-                
-                <div class="mySlides fade">
-                  <div class="numbertext">3 / 8</div>
-                  <img src="img/DSC04525.png" style="width:100%">
-                  <div class="text"></div>
-                </div>
-                <div class="mySlides fade">
-                    <div class="numbertext">4 / 8</div>
-                    <img src="img/DSC04526.png" style="width:100%">
-                    <div class="text"></div>
-                  </div>
-                  <div class="mySlides fade">
-                    <div class="numbertext">5 / 8</div>
-                    <img src="img/DSC04527.png" style="width:100%">
-                    <div class="text"></div>
-                  </div>
-                  
-                  <div class="mySlides fade">
-                    <div class="numbertext">6 / 8</div>
-                    <img src="img/DSC04528.png" style="width:100%">
-                    <div class="text"></div>
-                  </div>
-                  
-                  <div class="mySlides fade">
-                    <div class="numbertext">7 / 8</div>
-                    <img src="img/DSC04529.png" style="width:100%">
-                    <div class="text"></div>
-                  </div>
-                  <div class="mySlides fade">
-                    <div class="numbertext">8 / 8</div>
-                    <img src="img/DSC04530.png" style="width:100%">
-                    <div class="text"></div>
-                
-                  </div>
-                <a class="prev" onclick="plusSlides(-1)">❮</a>
-                <a class="next" onclick="plusSlides(1)">❯</a>
-                
-                </div>
-                <br>
-                
-                <div style="text-align:center">
-                  <span class="dot" onclick="currentSlide(1)"></span> 
-                  <span class="dot" onclick="currentSlide(2)"></span> 
-                  <span class="dot" onclick="currentSlide(3)"></span> 
-                  <span class="dot" onclick="currentSlide(4)"></span> 
-                  <span class="dot" onclick="currentSlide(5)"></span> 
-                  <span class="dot" onclick="currentSlide(6)"></span> 
-                  <span class="dot" onclick="currentSlide(7)"></span> 
-                  <span class="dot" onclick="currentSlide(8)"></span> 
-                
-                </div>
-                
-                <script>
-                let slideIndex = 1;
-                showSlides(slideIndex);
-                
-                function plusSlides(n) {
-                  showSlides(slideIndex += n);
-                }
-                
-                function currentSlide(n) {
-                  showSlides(slideIndex = n);
-                }
-                
-                function showSlides(n) {
-                  let i;
-                  let slides = document.getElementsByClassName("mySlides");
-                  let dots = document.getElementsByClassName("dot");
-                  if (n > slides.length) {slideIndex = 1}    
-                  if (n < 1) {slideIndex = slides.length}
-                  for (i = 0; i < slides.length; i++) {
-                    slides[i].style.display = "none";  
-                  }
-                  for (i = 0; i < dots.length; i++) {
-                    dots[i].className = dots[i].className.replace(" active", "");
-                  }
-                  slides[slideIndex-1].style.display = "block";  
-                  dots[slideIndex-1].className += " active";
-                }
-                </script>-->
+<br><br>
+<br><br>
+
+<h2>يشمل برنامج التأهيل :</h2>
+<ul>
+  <li>يشمل جلسة أولى تحتوي على مقابلة خاصة يتم فيها دراسة الحالة والتاريخ الصحي للحالة واجراء تقييمات خاصة حسب الهدف للخروج من الإصابة او الوصول الى الهدف الخاص . </li>
+  <li>نبدأ بتحديد موعد مقابلة لدراسة الحالة والتاريخ الصحي كامل بغضون نصف ساعة بدون أي اختبرات عملية وفتح ملف خاص للحالة .
+    مع إمكانية عمل اختبارات مباشرة بعد المقابلة او تأجيل الاختبارات لوقت اخر مع إمكانية عمل اختبارات بعد المقابلة واجراء جلسة عملية فورية حسب الحالة 
+    يتم تحديد المبلغ المالي من قبل الاستقبال قبل بدأ الموعد .
+  </li>
+  <li>اخراج تقرير كامل بعد دراسة الحالة بناءا على الملف الطبي والتقييمات الخاصة بالعيادة واتباع توصيات المعالج الطبيعي والطبيب الخاص وتقديم النصائح والتوصيات الخاصة من قبل المدرب والمؤهل بالعيادة الرياضية 
+    واذا تم طلب التقرير يتم تحديد الأمور المالية من قبل الاستقبال . 
+  </li>
+  <li>اتباع البرنامج التأهيلي وتحديد عدد الجلسات المحتملة المناسبة للعميل أسبوعيا وتصميم البرنامج التأهيلي للدورة التدريبية الكبرى والمتوسطة المتوقع انهاء المشاكل الصحية فيها وايضاح الأمور المالية كاملة بعد اول لقاء يتم فيه دراسة الحالة . </li>
+  <li>متابعة دورية للتقدم الصحي بعمل اختبارات مرة أخرى للتاكد من سير خطة العمل .</li>
+  <li>توجيه العميل لبرنامج التغذية والاستشفاء والبدأ بتغير نمط الحياة الى نمط حياة صحي .</li>
+</ul>
+
 </div>
+
+<br><br>
+<br>
+
 <footer>
     <p>&copy; 2024 Sport Clinic  جميع الحقوق محفوظة.</p>
 </footer>
 
-
-
+</body>
 </html>
