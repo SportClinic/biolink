@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+ <meta charset="UTF-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>حجز موعد</title>
+ <style>
+ body {
+ text-align: end;
+ font-family: Arial, sans-serif;
+ background-color: #f9f9f9;
+color: #333;
+ direction: rtl;
+ }
+ header {
+ background: #4CAF50;
+ color: white;
+ padding: 1rem 0;
+ text-align: center;
+}
+ .container {
+padding: 20px;
+ max-width: 500px;
+ margin: auto;
+ }
+ label, input, select, textarea, button {
+ display: block;
+ width: 100%;
+ margin-bottom: 10px;
+ padding: 10px;
+ border-radius: 4px;
+ border: 1px solid #ccc;
+ box-sizing: border-box; /* تمت إضافته لضمان عرض 100% صحيح للمدخلات */
+ }
+button {
+ background-color: #4CAF50;
+ color: white;
+ border: none;
+ cursor: pointer;
+ }
+ button:hover {
+ background-color: #45a049;
+ }
+ #result {
+ text-align: center;
+ color: green;
+ margin-top: 10px;
+ }
+ </style>
+</head>
+<body>
+
+ <header>
+ <h1>نموذج الحجز</h1>
+ </header>
+
+ <div class="container">
+ <form id="bookingForm">
+ <label>الاسم الكامل</label>
+ <input type="text" id="name" required>
+
+ <label>الحالة الصحية</label>
+ <input type="text" id="status" required>
+
+ <label>رقم الواتساب</label>
+ <input type="text" id="whatsapp" required>
+
+<label>تاريخ الموعد</label>
+<input type="date" id="date" required>
+
+ <label>الساعة</label>
+<select id="time" required>
+ <option value="">-- اختر الساعة --</option>
+</select>
+ <label>ملاحظات إضافية</label>
+ <textarea id="notes" rows="4"></textarea>
+
+ <button type="submit">احجز الآن</button>
+ </form>
+
+ <p id="result"></p>
+ </div>
+
+ <script>
+        // ❌ [تم تعديل الرابط] ❌
+        // كان الخلل بسبب مسار الملف المحلي المضاف للرابط.
+        // الرجاء استبدال 'UNIQUE_ID_HERE_FROM_N8N' بالمعرف الفريد الذي تحصل عليه من عقدة Webhook في N8N.
+        const N8N_WEBHOOK_URL = 'https://n8n.srv1070817.hstgr.cloud/webhook-test/file:///C:/Users/USER/OneDrive/Desktop/bio%20link/appointment.html'; 
+        const CURRENT_PAGE_URL = window.location.href; 
+        const MAX_RETRIES = 3;
+        const initialDelay = 1000;
+
+ const timeSelect = document.getElementById("time");
+        // تهيئة الساعات
+ for (let i = 8; i <= 21; i++) { 
+ let hour = i.toString().padStart(2, '0');
+ // تم الالتزام بنمط عرض الوقت الأصلي الذي أرسلته
+ let label = (i < 12) ? `${i} صباحًا` : ((i === 12) ? `12 ظهرًا` : `${i - 12} مساءً`);
+ let option = document.createElement("option");
+ option.value = `${hour}:00`;
+ option.textContent = label;
+ timeSelect.appendChild(option);
+ }
+
+        // دالة إرسال النموذج إلى N8N Webhook
+ document.getElementById("bookingForm").addEventListener("submit", async function(e) {
+e.preventDefault();
+            const form = e.target;
+const statusElement = document.getElementById("result"); 
+            // إعادة تعيين اللون للبدء (اللون الأخضر هو الافتراضي في CSS)
+            statusElement.style.color = 'green'; 
+            statusElement.textContent = ''; 
+            
+ const data = {
+ name: form.querySelector("#name").value,
+ status: form.querySelector("#status").value,
+ whatsapp: form.querySelector("#whatsapp").value,
+date: form.querySelector("#date").value,
+time: form.querySelector("#time").value,
+ notes: form.querySelector("#notes").value,
+            webPageUrl: CURRENT_PAGE_URL 
+ };
+
+            // رسالة البداية (لون أزرق للتحميل - باستخدام inline style لتجنب تغيير CSS)
+            statusElement.textContent = 'جاري إرسال طلب الحجز... يرجى الانتظار.';
+            statusElement.style.color = 'blue';
+
+            // منطق إعادة المحاولة مع التراجع الأسي (Exponential Backoff)
+            for (let attempt = 0; attempt < MAX_RETRIES; attempt++) {
+                try {
+                    const response = await fetch(N8N_WEBHOOK_URL, {
+                        method: 'POST',
+                        // إرسال البيانات بصيغة JSON (قياسي لـ N8N)
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(data)
+                    });
+
+                    if (response.ok) {
+                        statusElement.textContent = "✅ تم إرسال الحجز بنجاح!";
+                        statusElement.style.color = 'green'; // لون النجاح من تصميمك الأصلي
+                        form.reset();
+                        return;
+                    } else if (response.status === 429 && attempt < MAX_RETRIES - 1) {
+                        const delay = initialDelay * Math.pow(2, attempt);
+                        statusElement.textContent = `🚫 تجاوز حد الإرسال. محاولة إعادة الإرسال بعد ${delay / 1000} ثوانٍ...`;
+                        statusElement.style.color = 'orange'; 
+                        await new Promise(resolve => setTimeout(resolve, delay));
+                    } else {
+                        statusElement.textContent = `❌ حدث خطأ في النظام. رمز الخطأ: ${response.status}. يرجى المحاولة لاحقاً.`;
+                        statusElement.style.color = 'red'; 
+                        return;
+                    }
+                } catch (error) {
+                    console.error('Fetch Error:', error);
+                    statusElement.textContent = '❌ تعذر الاتصال بالخادم. يرجى التحقق من اتصالك بالإنترنت.';
+                    statusElement.style.color = 'red'; 
+                    return;
+                }
+            }
+            
+            // في حالة فشل جميع المحاولات
+            statusElement.textContent = '❌ فشلت محاولات إرسال الطلب بعد محاولات عديدة. يرجى المحاولة لاحقاً.';
+            statusElement.style.color = 'red';
+});
+ </script>
+
+</body>
+</html>
