@@ -299,19 +299,21 @@
     {
       title: "عنان قزيح",
       desc:  "تعرض عنان لإصابة في الغروف الهلالي في الركبتين قام باجراء عملية في الركبة اليمين والتحق بالعيادة الرياضية وتم عمل إعادة تأهيل وحاليا يمارس كرة القدم بشكل معتاد  ",
-      thumb: "Screenshot 2026-03-23 at 23.41.31.png",
+      tag:" غضروف هلالي",
+      thumb: "'/Users/user/Desktop/bio link/OneDrive_1_3-11-2026/haya .png'",
       src:   "https://www.youtube.com/embed/k1OJHUWvnnE",
       type:  "youtube"
     },
-    /*
+    
     {
-      title: "عنان قزيح ",
+      title: "هيا عنبوسي ",
       desc:  "خطة تدريبية متكاملة ومخصصة ساعدت سارة على استعادة قوتها وثقتها بنفسها خلال ثلاثة أشهر فقط.",
       tag:   "لياقة بدنية",
       thumb: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=600&q=80",
-      src:   "'/Users/user/Desktop/bio link/OneDrive_1_3-11-2026/anan qazah.mp4'",
-      type:  "video"
+      src:   "https://www.youtube.com/embed/FGXPAtqY4AY",
+      type:  "youtube"
     },
+    /*
     {
       title: "محمد يخسر 20 كيلو في 6 أشهر",
       desc:  "بمتابعة يومية من فريق العيادة واتباع برنامج غذائي ورياضي دقيق، حقق محمد هدفه الذي طالما حلم به.",
@@ -400,5 +402,15 @@
   history.pushState(null, null, location.href);
   window.addEventListener('popstate', () => { window.location.href = 'index.html'; });
 </script>
+<script>
+  // نضيف حالة في سجل التاريخ بمجرد تحميل الصفحة
+  history.pushState(null, null, location.href);
+
+  // نراقب حدث الرجوع في المتصفح
+  window.addEventListener('popstate', function (event) {
+    // لما يضغط المستخدم زر الرجوع، نوجهه للصفحة الرئيسية
+    window.location.href = 'rehab.html';
+  });
+</script> 
 </body>
 </html>
