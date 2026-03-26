@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>قصص نجاح</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    :root {
+      --green: #4CAF50;
+      --green-dark: #388E3C;
+      --green-light: #A5D6A7;
+      --bg: #f4f8f4;
+      --card-bg: #ffffff;
+      --text: #2a2a2a;
+      --muted: #6b7280;
+      --shadow: 0 8px 32px rgba(76,175,80,0.10);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Tajawal', Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      direction: rtl;
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: linear-gradient(135deg, var(--green-dark) 0%, var(--green) 100%);
+      color: white;
+      padding: 2rem 1rem 3rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    header::before {
+      content: '';
+      position: absolute;
+      bottom: -30px; left: 0; right: 0;
+      height: 60px;
+      background: var(--bg);
+      border-radius: 50% 50% 0 0 / 60px 60px 0 0;
+    }
+    header h1 {
+      font-size: 2.4rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+    header p.subtitle {
+      margin-top: 0.5rem;
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    /* ── GRID ── */
+    .container {
+      max-width: 960px;
+      margin: 3rem auto 2rem;
+      padding: 0 1.2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    /* ── CARD ── */
+    .card {
+      background: var(--card-bg);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform .25s, box-shadow .25s;
+      cursor: pointer;
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 48px rgba(76,175,80,0.18);
+    }
+
+    /* thumbnail area */
+    .card-thumb {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%; /* 16:9 */
+      background: #1a1a1a;
+      overflow: hidden;
+    }
+    .card-thumb img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .4s;
+    }
+    .card:hover .card-thumb img {
+      transform: scale(1.05);
+    }
+    /* play button overlay */
+    .play-btn {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.35);
+      transition: background .3s;
+    }
+    .card:hover .play-btn {
+      background: rgba(0,0,0,0.5);
+    }
+    .play-btn .circle {
+      width: 58px; height: 58px;
+      border-radius: 50%;
+      background: var(--green);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 20px rgba(76,175,80,0.5);
+      transition: transform .25s, background .25s;
+    }
+    .card:hover .play-btn .circle {
+      transform: scale(1.12);
+      background: var(--green-dark);
+    }
+    .play-btn .circle i {
+      color: white;
+      font-size: 1.4rem;
+      margin-right: -3px; /* optical center */
+    }
+
+    /* card body */
+    .card-body {
+      padding: 1.1rem 1.3rem 1.4rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+    .card-body h3 {
+      font-size: 1.08rem;
+      font-weight: 700;
+      color: var(--green-dark);
+      line-height: 1.4;
+    }
+    .card-body p {
+      font-size: 0.93rem;
+      color: var(--muted);
+      line-height: 1.6;
+      flex: 1;
+    }
+    .card-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      background: #e8f5e9;
+      color: var(--green-dark);
+      padding: 3px 10px;
+      border-radius: 20px;
+      width: fit-content;
+    }
+
+    /* ── MODAL ── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.82);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      animation: fadeIn .25s;
+    }
+    .modal-overlay.open {
+      display: flex;
+    }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+    .modal-box {
+      background: #fff;
+      border-radius: 20px;
+      width: 100%;
+      max-width: 760px;
+      overflow: hidden;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.45);
+      animation: slideUp .3s ease;
+      position: relative;
+    }
+    @keyframes slideUp {
+      from { transform: translateY(40px); opacity: 0; }
+      to   { transform: translateY(0);    opacity: 1; }
+    }
+
+    .modal-video-wrap {
+      width: 100%;
+      padding-top: 56.25%;
+      position: relative;
+      background: #000;
+    }
+    .modal-video-wrap iframe,
+    .modal-video-wrap video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .modal-info {
+      padding: 1.3rem 1.6rem 1.6rem;
+      direction: rtl;
+    }
+    .modal-info h2 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--green-dark);
+      margin-bottom: 0.5rem;
+    }
+    .modal-info p {
+      font-size: 0.97rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 14px; left: 14px;
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+      border: none;
+      color: white;
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      backdrop-filter: blur(4px);
+      transition: background .2s;
+      z-index: 10;
+    }
+    .modal-close:hover { background: rgba(255,255,255,0.3); }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      color: var(--muted);
+      font-size: 0.88rem;
+      border-top: 1px solid #e5e7eb;
+      margin-top: 2rem;
+    }
+
+    @media (max-width: 500px) {
+      header h1 { font-size: 1.7rem; }
+      .container { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1><i class="fa-solid fa-trophy" style="margin-left:10px;opacity:.85"></i>قصص نجاح</h1>
+  <p class="subtitle">إلهام حقيقي من رحلات عملائنا</p>
+</header>
+
+<div class="container" id="storiesGrid"></div>
+
+<!-- VIDEO MODAL -->
+<div class="modal-overlay" id="videoModal">
+  <div class="modal-box">
+    <button class="modal-close" id="modalClose"><i class="fa fa-times"></i></button>
+    <div class="modal-video-wrap" id="modalVideoWrap"></div>
+    <div class="modal-info">
+      <h2 id="modalTitle"></h2>
+      <p id="modalDesc"></p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>&copy; 2024 Sport Clinic &nbsp;|&nbsp; جميع الحقوق محفوظة.</p>
+</footer>
+
+<script>
+  /* ── DATA ── */
+  /* Replace src with your real video URLs or YouTube embed links.
+     For YouTube use:  "https://www.youtube.com/embed/VIDEO_ID"
+     For local video:  "videos/myfile.mp4"  and set type:"local"         */
+  const stories = [
+    {
+      title: "بكر مياله",
+      desc:  " بكرا ميالة ، 21 سنة كان يعاني من اوجاع قوية في اسفل الظهر ، عمل صورة رنين وتبين انه عنده انزلاق غضروفي ، ذهب للطبيب والتزم في الادوية لمدة ٣ شهور ، بعض الاطباء نصحوه في التاهيل الرياضي ، التحق بالعيادة الرياضية تم عمل خطة تأهيلية والتزم فيها وخلال شهرين كان التحسّن 95% ، والان بكر مكمّل رحلته في العيادة الرياضية. ",
+      tag:" ديسك اسفل العمود الفقري",
+      thumb: "bakr.png",
+      src:   "https://youtube.com/embed/ixZDcfpzI2k",
+      type:  "youtube"
+    },
+    
+    
+  ];
+
+  /* ── RENDER CARDS ── */
+  const grid = document.getElementById('storiesGrid');
+  stories.forEach((s, i) => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <div class="card-thumb">
+        <img src="${s.thumb}" alt="${s.title}" loading="lazy"/>
+        <div class="play-btn">
+          <div class="circle"><i class="fa-solid fa-play"></i></div>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="card-tag"><i class="fa-solid fa-star" style="font-size:.7rem"></i>${s.tag}</span>
+        <h3>${s.title}</h3>
+        <p>${s.desc}</p>
+      </div>`;
+    card.addEventListener('click', () => openModal(s));
+    grid.appendChild(card);
+  });
+
+  /* ── MODAL ── */
+  const modal      = document.getElementById('videoModal');
+  const videoWrap  = document.getElementById('modalVideoWrap');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalDesc  = document.getElementById('modalDesc');
+  const closeBtn   = document.getElementById('modalClose');
+
+  function openModal(s) {
+    modalTitle.textContent = s.title;
+    modalDesc.textContent  = s.desc;
+    if (s.type === 'youtube') {
+      videoWrap.innerHTML = `<iframe src="${s.src}?autoplay=1&rel=0" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
+    } else {
+      videoWrap.innerHTML = `<video src="${s.src}" controls autoplay></video>`;
+    }
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    modal.classList.remove('open');
+    videoWrap.innerHTML = '';
+    document.body.style.overflow = '';
+  }
+
+  closeBtn.addEventListener('click', closeModal);
+  modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  /* ── back-button → index.html ── */
+  history.pushState(null, null, location.href);
+  window.addEventListener('popstate', () => { window.location.href = 'index.html'; });
+</script>
+<script>
+  // نضيف حالة في سجل التاريخ بمجرد تحميل الصفحة
+  history.pushState(null, null, location.href);
+
+  // نراقب حدث الرجوع في المتصفح
+  window.addEventListener('popstate', function (event) {
+    // لما يضغط المستخدم زر الرجوع، نوجهه للصفحة الرئيسية
+    window.location.href = 'rehab.html';
+  });
+</script> 
+</body>
+</html>
